@@ -7,7 +7,7 @@
     "text": {"signal": "'Arrivals by State in Australia (' + sliderYear + ')'"}, 
     "fontSize": 10,
     "fontWeight": "bold",
-    "anchor": "middle" },
+    "anchor": "start" },
 
 "width": 500,
   "height": 350,
