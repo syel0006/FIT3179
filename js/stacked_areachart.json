@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Migrant Arrivals by Visa Type (’000) 2013-2024", "fontSize": 15, "fontWeight": "bold"},
+  "title": {"text": "Migrant Arrivals by Visa Type (’000) 2013-2024", "fontSize": 20, "fontWeight": "bold"},
   "width": 720,
   "height": 300,
 
