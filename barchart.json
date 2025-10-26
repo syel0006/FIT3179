@@ -1,0 +1,56 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "title": {
+    "text": "Population Growth Components by State (2025)",
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "middle"
+  },
+
+  "width": 850,
+  "height": 450,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/datasets/population_growth2025.csv",
+    "format": {"type": "csv"}
+  },
+
+  "mark": {"type": "bar", "tooltip": true},
+
+  "encoding": {
+    "x": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State",
+      "axis": {"labelAngle": 0}
+    },
+
+    "y": {
+      "aggregate": "sum",
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Population Change",
+      "axis": {"format": ",.0f"},
+      "stack": "zero"
+    },
+
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "title": "Category",
+      "scale": {"scheme": "set2"}   
+    },
+
+    "tooltip": [
+      {"field": "State", "title": "State"},
+      {"field": "Category", "title": "Component"},
+      {"field": "Value", "title": "Population Change", "format": ",.0f"}
+    ]
+  },
+
+  "config": {
+    "legend": {"title": "Components of Population Growth"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13}
+  }
+}
