@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  
+   "title": {
+    "text": {"signal": "'Arrivals by State in Australia (' + sliderYear + ')'"}, 
+    "fontSize": 20,
+    "fontWeight": "bold",
+    "anchor": "middle" },
+
+"width": 700,
+  "height": 550,
+  "projection": {"type": "mercator"},
+
+  "params": [
+    {
+      "name": "sliderYear",
+      "value": 2019,
+      "bind": {"input": "select", "options": [2019,2023,2024,2025], "name": "Select Year: "}
+    }
+  ],
+
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/main/map_topojson.json",
+        "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
+      },
+      "mark": {"type": "geoshape", "fill": "#f7f7f7", "stroke": "#cccccc", "strokeWidth": 1}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/main/data_for_map_cleaned.csv",
+        "format": {"type": "csv", "parse": {"Year": "number", "Arrivals": "number"}}
+      },
+      "transform": [
+        {"filter": "datum.Year == sliderYear"},
+        {
+          "lookup": "State",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/main/map_topojson.json",
+              "format": {"type": "topojson", "feature": "georef-australia-state-millesime"}
+            },
+            "key": "properties.ste_name",
+            "fields": ["geometry"]
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1},
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "Arrivals",
+          "type": "quantitative",
+          "title": "Arrivals",
+          "scale": {"scheme": "greens"},
+          "legend": {"format": "~s"}
+        },
+        "tooltip": [
+          {"field": "State", "title": "State"},
+          {"field": "Year", "title": "Year"},
+          {"field": "Arrivals", "title": "Arrivals", "format": ","}
+        ]
+      }
+    }
+  ]
+}
