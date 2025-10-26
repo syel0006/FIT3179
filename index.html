@@ -110,6 +110,7 @@
       color: white;
     }
 
+
   </style>
 </head>
 
@@ -118,7 +119,7 @@
   <section id="intro-section">
   <h1>Migration Visualisations Dashboard</h1>
   <p>
-    This visualisation Dashboard provides an interactive exploration of population change in Australia,
+    This Visualisation Dashboard provides an interactive exploration of population change in Australia,
     focusing on overseas migration, visa patterns, and state-by-state growth. It highlights
     how migration trends have shifted over time, especially before, during, and after
     the COVID-19 pandemic, revealing differences in how each state contributes to
@@ -131,7 +132,8 @@
     <div class="vis-container" id="mapVis"></div>
     <div class="description">
       <h2>Migration Arrivals by State</h2>
-      <p>This interactive map displays the distribution of permanent and temporary arrivals across Australia. Use the slider to explore the changes over different years.</p>
+      <p>This visualisation explores how overseas migration contributes to population change across Australia at the state level for a selected year. The map reveals strong east-coast dominance, particularly in New South Wales, Victoria, and Queensland- where most international arrivals settle due to major job markets, education hubs, and established migrant communities.
+         The filter can be used to change the data to a different year's data and can help compare the response of migration before and after COVID-19. </p>
       <p class="note-warning">⚠ No data available between 2020–22 due to COVID border restrictions.</p>
     </div>
   </section>
@@ -141,7 +143,9 @@
     <div class="vis-container" id="barVis"></div>
     <div class="description">
       <h2>Population Growth Drivers by State (2025)</h2>
-      <p>This stacked bar chart highlights whether population growth in each state is driven more by natural increase, interstate migration, or overseas migration.</p>
+      <p>This stacked bar chart highlights whether population growth in each state is driven more by natural increase, interstate migration, or overseas migration.
+        This chart highlights the high contribution of Overseas migration to the increase in population for every state in Australia. 
+      </p>
     </div>
   </section>
 
@@ -150,7 +154,9 @@
     <div class="vis-container" id="areaVis"></div>
     <div class="description">
       <h2>Visa Category Trends Over Time</h2>
-      <p>This stacked area chart shows how different visa categories contributed to migration flows, including the major decline in temporary visas following COVID-19 restrictions.</p>
+      <p>This stacked area chart shows how different visa categories contributed to migration flows over the years, including the major decline in temporary visas following COVID-19 restrictions.
+        With this chart we can clearly see that there was an immense decrease in migrant arrivals in 2020-21, due to COVID-19 an border closures. 
+      </p>
     </div>
   </section>
 
@@ -159,14 +165,21 @@
     <div class="vis-container" id="lineVis"></div>
     <div class="description">
       <h2>Line graph</h2>
-      <p>This interactive map displays the distribution of permanent and temporary arrivals across Australia. Use the slider to explore the changes over different years.</p>
+      <p>This chart highlights how Australia’s migration program has shifted over time across different visa streams. The dramatic drop in 2020–21 reflects COVID-19 border closures, followed by a strong rebound as restrictions lifted.
+        Overall, we can see that migration trends are shaped by both economic needs and global disruptions, with skilled migration continuing to drive Australia’s long-term population strategy.</p>
     </div>
   </section>
 
   <footer>
     <p><strong>Author:</strong> Sanika Yelane </p>
-    <p><strong>Data Sources:</strong> Australian Bureau of Statistics, Custom GitHub datasets</p>
-    <p><strong>Tools:</strong> Vega-Lite v5, Vega-Embed, HTML5, CSS</p>
+    <p><strong>Data Sources:</strong> <ul><li>Australian Bureau of Statistics</li>
+        <li>Custom GitHub datasets</li>
+    <li>Department of Home Affairs: 2023-24 Migration Program Report</li>
+    <li>Data.gov.au: Historical migration statistics</li>
+    </ul>
+    </p>
+    <p><strong>Tools used:</strong> mapShaper, Vegalite, VS Code, HTML </p>
+    
   </footer>
 
 
