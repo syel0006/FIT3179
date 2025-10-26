@@ -9,8 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
 
   <style>
     body {
@@ -48,7 +47,7 @@
       margin-top: 10px;
     }
     #intro-section p {
-      font-size: 1rem;   /* fix missing unit */
+      font-size: 1rem;   
       max-width: 900px;
       margin: 0 auto;
     }
@@ -66,12 +65,12 @@
 
     /* Visualization card */
     .vis-container {
-      flex: 1 1 640px;   /* can grow + shrink */
-      min-width: 0;      /* CRUCIAL so it can actually shrink */
+      flex: 1 1 640px;   
+      min-width: 0;     
       width: 100%;
-      max-width: 900px;  /* optional cap */
+      max-width: 900px; 
       border-radius: 16px;
-      overflow: hidden;  /* crop anything rogue */
+      overflow: hidden;  
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       background: white;
       padding: 10px;
@@ -97,10 +96,10 @@
     }
     footer p { margin: 6px 0; color: white; }
 
-    /* Make embeds respect the card width */
+    
     .vega-embed { width: 100% !important; max-width: 100%; }
     .vega-embed > * { max-width: 100%; }
-    #mapVis, #barVis, #areaVis, #lineVis { width: 100%; } /* explicit for container width */
+    #mapVis, #barVis, #areaVis, #lineVis { width: 100%; } 
 
     /* Responsive */
     @media (max-width: 1100px) {
@@ -182,7 +181,7 @@
 
   <!-- EMBED CHARTS -->
   <script type="text/javascript">
-    const opts = { actions: false }; // keep simple; width handled by spec + CSS
+    const opts = { actions: false }; 
     vegaEmbed('#mapVis', "js/map.json", opts).catch(console.error);
     vegaEmbed('#barVis', "js/barchart.json", opts).catch(console.error);
     vegaEmbed('#areaVis', "js/stacked_areachart.json", opts).catch(console.error);
