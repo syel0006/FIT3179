@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Migrant Arrivals by Visa Type (’000) 2013-2024", "fontSize": 15, "fontWeight": "bold"},
-  "width": 520,
-  "height": 350,
+  "width": 720,
+  "height": 300,
 
   "data": {
     "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/datasets/MigrantArrivals_byVisaType.csv",
@@ -44,6 +44,8 @@
       {"field": "TotalK", "title": "Total Arrivals (’000)", "format": ",.0f"}
     ]
   },
+
+  
 
   "config": {
     "legend": {"title": "Visa Type"},

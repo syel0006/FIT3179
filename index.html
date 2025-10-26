@@ -92,6 +92,13 @@
       max-width: 420px;
     }
 
+    .note-warning {
+    color: #b30000;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 6px;
+    }
+
     footer {
       background-color: #01432e;
       color: white;
@@ -125,6 +132,16 @@
     <div class="description">
       <h2>Migration Arrivals by State</h2>
       <p>This interactive map displays the distribution of permanent and temporary arrivals across Australia. Use the slider to explore the changes over different years.</p>
+      <p class="note-warning">⚠ No data available between 2020–22 due to COVID border restrictions.</p>
+    </div>
+  </section>
+
+   <!-- Stacked Bar Chart -->
+  <section>
+    <div class="vis-container" id="barVis"></div>
+    <div class="description">
+      <h2>Population Growth Drivers by State (2025)</h2>
+      <p>This stacked bar chart highlights whether population growth in each state is driven more by natural increase, interstate migration, or overseas migration.</p>
     </div>
   </section>
 
@@ -134,15 +151,6 @@
     <div class="description">
       <h2>Visa Category Trends Over Time</h2>
       <p>This stacked area chart shows how different visa categories contributed to migration flows, including the major decline in temporary visas following COVID-19 restrictions.</p>
-    </div>
-  </section>
-
-  <!-- Stacked Bar Chart -->
-  <section>
-    <div class="vis-container" id="barVis"></div>
-    <div class="description">
-      <h2>Population Growth Drivers by State (2025)</h2>
-      <p>This stacked bar chart highlights whether population growth in each state is driven more by natural increase, interstate migration, or overseas migration.</p>
     </div>
   </section>
 
@@ -156,7 +164,7 @@
   </section>
 
   <footer>
-    <p><strong>Author:</strong> Sanika 😎✨</p>
+    <p><strong>Author:</strong> Sanika Yelane </p>
     <p><strong>Data Sources:</strong> Australian Bureau of Statistics, Custom GitHub datasets</p>
     <p><strong>Tools:</strong> Vega-Lite v5, Vega-Embed, HTML5, CSS</p>
   </footer>
@@ -165,8 +173,8 @@
   <!-- EMBED CHARTS -->
   <script type="text/javascript">
   vegaEmbed('#mapVis', "js/map.json", {actions:false}).catch(console.error);
-  vegaEmbed('#areaVis', "js/stacked_areachart.json", {actions:false}).catch(console.error);
   vegaEmbed('#barVis', "js/barchart.json", {actions:false}).catch(console.error);
+  vegaEmbed('#areaVis', "js/stacked_areachart.json", {actions:false}).catch(console.error);
   vegaEmbed('#lineVis', "js/graph1.json", {actions:false}).catch(console.error);
 </script>
 </body>

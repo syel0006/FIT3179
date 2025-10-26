@@ -9,7 +9,7 @@
   },
 
   "width": 600,
-  "height": 450,
+  "height": 300,
 
   "data": {
     "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/datasets/population_growth2025.csv",
