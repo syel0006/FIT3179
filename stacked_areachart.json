@@ -22,7 +22,9 @@
       "labelFontSize": 10,
       "title": "Financial year",
       "labelOverlap": false
-    }},
+    }
+},
+
     "y": {
       "aggregate": "sum",
       "field": "CountK",
