@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Migrant Arrivals by Visa Type (’000) 2013-2024", "fontSize": 15, "fontWeight": "bold"},
+  "width": 520,
+  "height": 350,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/MigrantArrivals_byVisaType.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    { "calculate": "toNumber(datum['Count (\\'000)'])", "as": "CountK" },
+    { "joinaggregate": [{ "op": "sum", "field": "CountK", "as": "TotalK" }], "groupby": ["Year"] }
+  ],
+
+  "mark": {"type": "area", "interpolate": "monotone", "opacity": 0.9},
+
+  "encoding": {
+    "x": {"field": "Year", "type": "ordinal", "title": "Financial Year", "axis": {
+      "labelAngle": -45,
+      "labelFontSize": 10,
+      "title": "Financial year",
+      "labelOverlap": false
+    }},
+    "y": {
+      "aggregate": "sum",
+      "field": "CountK",
+      "type": "quantitative",
+      "title": "Arrivals (’000)",
+      "stack": "zero",
+      "axis": {"format": ",.0f"}
+    },
+    "color": {
+      "field": "Visa Type",
+      "type": "nominal",
+      "title": "Visa Type",
+      "scale": {"scheme": "category20"}
+    },
+    "tooltip": [
+      {"field": "Year", "title": "Year"},
+      {"field": "Visa Type", "title": "Category"},
+      {"aggregate": "sum", "field": "CountK", "title": "Arrivals (’000)", "format": ",.2f"},
+      {"field": "TotalK", "title": "Total Arrivals (’000)", "format": ",.0f"}
+    ]
+  },
+
+  "config": {
+    "legend": {"title": "Visa Type"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13}
+  }
+}
