@@ -9,7 +9,7 @@
     "fontWeight": "bold",
     "anchor": "middle" },
 
-"width": 900,
+"width": 500,
   "height": 350,
   "projection": {"type": "mercator"},
 
