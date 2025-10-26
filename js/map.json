@@ -5,7 +5,7 @@
   
    "title": {
     "text": {"signal": "'Arrivals by State in Australia (' + sliderYear + ')'"}, 
-    "fontSize": 20,
+    "fontSize": 10,
     "fontWeight": "bold",
     "anchor": "middle" },
 
