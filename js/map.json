@@ -33,7 +33,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/main/data_for_map_cleaned.csv",
+        "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/main/datasets/data_for_map_cleaned.csv",
         "format": {"type": "csv", "parse": {"Year": "number", "Arrivals": "number"}}
       },
       "transform": [
