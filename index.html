@@ -40,8 +40,7 @@
       padding: 40px 8%;
       background-color: #f1e7cf;
     }
-    #intro-section h1,
-    #intro-section p { color: #01432e; }
+    #intro-section h1, #intro-section p { color: #01432e; }
     #intro-section h1 {
       font-size: 2.8rem;
       font-weight: bold;
@@ -49,7 +48,7 @@
       margin-top: 10px;
     }
     #intro-section p {
-      font-size: 1rem;     /* fixed missing unit */
+      font-size: 1rem;   /* fix missing unit */
       max-width: 900px;
       margin: 0 auto;
     }
@@ -65,14 +64,14 @@
     section:nth-child(odd)  { background-color: #f1e7cf; }
     section:nth-child(even) { background-color: #ebdec0; flex-direction: row-reverse; }
 
-    /* Visualization card — allow flex shrink! */
+    /* Visualization card */
     .vis-container {
-      flex: 1 1 640px;   /* grow + shrink, base width ~640px */
-      min-width: 0;      /* crucial: let it shrink inside flex */
+      flex: 1 1 640px;   /* can grow + shrink */
+      min-width: 0;      /* CRUCIAL so it can actually shrink */
       width: 100%;
-      max-width: 900px;  /* optional cap; adjust as you like */
+      max-width: 900px;  /* optional cap */
       border-radius: 16px;
-      overflow: hidden;
+      overflow: hidden;  /* crop anything rogue */
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       background: white;
       padding: 10px;
@@ -81,7 +80,7 @@
     .description {
       flex: 1 1 40%;
       max-width: 520px;
-      min-width: 0;      /* prevents overflow by long text */
+      min-width: 0;      /* prevent text from forcing overflow */
     }
 
     .note-warning {
@@ -97,6 +96,11 @@
       padding: 40px 10%;
     }
     footer p { margin: 6px 0; color: white; }
+
+    /* Make embeds respect the card width */
+    .vega-embed { width: 100% !important; max-width: 100%; }
+    .vega-embed > * { max-width: 100%; }
+    #mapVis, #barVis, #areaVis, #lineVis { width: 100%; } /* explicit for container width */
 
     /* Responsive */
     @media (max-width: 1100px) {
@@ -121,7 +125,7 @@
 
   <!-- Map -->
   <section>
-    <div class="vis-container" id="mapVis"></div>
+    <div class="vis-container"><div id="mapVis"></div></div>
     <div class="description">
       <h2>Migration Arrivals by State</h2>
       <p>This visualisation explores how overseas migration contributes to population change across Australia at the state level for a selected year. The map reveals strong east-coast dominance, particularly in New South Wales, Victoria, and Queensland—where most international arrivals settle due to major job markets, education hubs, and established migrant communities.
@@ -133,7 +137,7 @@
 
   <!-- Stacked Bar Chart -->
   <section>
-    <div class="vis-container" id="barVis"></div>
+    <div class="vis-container"><div id="barVis"></div></div>
     <div class="description">
       <h2>Population Growth Drivers by State (2025)</h2>
       <p>This stacked bar chart highlights whether population growth in each state is driven more by natural increase, interstate migration, or overseas migration.
@@ -144,7 +148,7 @@
 
   <!-- Stacked Area Chart -->
   <section>
-    <div class="vis-container" id="areaVis"></div>
+    <div class="vis-container"><div id="areaVis"></div></div>
     <div class="description">
       <h2>Visa Category Trends Over Time</h2>
       <p>This stacked area chart shows how different visa categories contributed to migration flows over the years, including the major decline in temporary visas following COVID-19 restrictions.
@@ -155,7 +159,7 @@
 
   <!-- Line graph -->
   <section>
-    <div class="vis-container" id="lineVis"></div>
+    <div class="vis-container"><div id="lineVis"></div></div>
     <div class="description">
       <h2>Line graph</h2>
       <p>This chart highlights how Australia’s migration program has shifted over time across different visa streams. The dramatic drop in 2020–21 reflects COVID-19 border closures, followed by a strong rebound as restrictions lifted.
@@ -178,10 +182,11 @@
 
   <!-- EMBED CHARTS -->
   <script type="text/javascript">
-    vegaEmbed('#mapVis', "js/map.json", {actions:false}).catch(console.error);
-    vegaEmbed('#barVis', "js/barchart.json", {actions:false}).catch(console.error);
-    vegaEmbed('#areaVis', "js/stacked_areachart.json", {actions:false}).catch(console.error);
-    vegaEmbed('#lineVis', "js/graph1.json", {actions:false}).catch(console.error);
+    const opts = { actions: false }; // keep simple; width handled by spec + CSS
+    vegaEmbed('#mapVis', "js/map.json", opts).catch(console.error);
+    vegaEmbed('#barVis', "js/barchart.json", opts).catch(console.error);
+    vegaEmbed('#areaVis', "js/stacked_areachart.json", opts).catch(console.error);
+    vegaEmbed('#lineVis', "js/graph1.json", opts).catch(console.error);
   </script>
 </body>
 </html>
