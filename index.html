@@ -13,7 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -34,31 +33,28 @@
       margin-bottom: 10px;
     }
 
+    /* Intro */
     #intro-section {
-  display: block !important;
-  text-align: center;
-  padding: 40px 8%;
-  background-color: #f1e7cf;
-}
+      display: block !important;
+      text-align: center;
+      padding: 40px 8%;
+      background-color: #f1e7cf;
+    }
+    #intro-section h1,
+    #intro-section p { color: #01432e; }
+    #intro-section h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      margin-top: 10px;
+    }
+    #intro-section p {
+      font-size: 1rem;     /* fixed missing unit */
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-#intro-section h1,
-#intro-section p {
-  color: #01432e;
-}
-
-#intro-section h1 {
-  font-size: 2.8rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-  margin-top: 10px;
-}
-
-#intro-section p {
-  font-size: 10;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
+    /* Sections */
     section {
       display: flex;
       align-items: center;
@@ -66,19 +62,15 @@
       padding: 60px 8%;
       gap: 60px;
     }
+    section:nth-child(odd)  { background-color: #f1e7cf; }
+    section:nth-child(even) { background-color: #ebdec0; flex-direction: row-reverse; }
 
-    section:nth-child(odd) {
-      background-color: #f1e7cf;
-    }
-
-    section:nth-child(even) {
-      background-color: #ebdec0;
-      flex-direction: row-reverse;
-    }
-
-   .vis-container {
-      flex: 1.2;
-      min-width: 1050px;
+    /* Visualization card — allow flex shrink! */
+    .vis-container {
+      flex: 1 1 640px;   /* grow + shrink, base width ~640px */
+      min-width: 0;      /* crucial: let it shrink inside flex */
+      width: 100%;
+      max-width: 900px;  /* optional cap; adjust as you like */
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -89,13 +81,14 @@
     .description {
       flex: 1 1 40%;
       max-width: 520px;
+      min-width: 0;      /* prevents overflow by long text */
     }
 
     .note-warning {
-    color: #b30000;
-    font-size: 12px;
-    font-style: italic;
-    margin-top: 6px;
+      color: #b30000;
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 6px;
     }
 
     footer {
@@ -103,54 +96,42 @@
       color: white;
       padding: 40px 10%;
     }
+    footer p { margin: 6px 0; color: white; }
 
-    footer p {
-      margin: 6px 0;
-      color: white;
-    }
-
+    /* Responsive */
     @media (max-width: 1100px) {
-  section {
-    flex-direction: column;
-    gap: 24px;
-  }
-  .vis-container,
-  .description {
-    flex: 1 1 auto;
-    width: 100%;
-    max-width: none;
-  }
-}
-
-
+      section { flex-direction: column; gap: 24px; }
+      .vis-container, .description { flex: 1 1 auto; width: 100%; max-width: none; }
+    }
   </style>
 </head>
 
 <body>
-    <!-- Intro and Heading-->
+  <!-- Intro and Heading-->
   <section id="intro-section">
-  <h1>Migration Visualisations Dashboard</h1>
-  <p>
-    This Visualisation Dashboard provides an interactive exploration of population change in Australia,
-    focusing on overseas migration, visa patterns, and state-by-state growth. It highlights
-    how migration trends have shifted over time, especially before, during, and after
-    the COVID-19 pandemic, revealing differences in how each state contributes to
-    Australia’s overall demographic change.
-  </p>
-</section>
+    <h1>Migration Visualisations Dashboard</h1>
+    <p>
+      This Visualisation Dashboard provides an interactive exploration of population change in Australia,
+      focusing on overseas migration, visa patterns, and state-by-state growth. It highlights
+      how migration trends have shifted over time, especially before, during, and after
+      the COVID-19 pandemic, revealing differences in how each state contributes to
+      Australia’s overall demographic change.
+    </p>
+  </section>
 
   <!-- Map -->
   <section>
     <div class="vis-container" id="mapVis"></div>
     <div class="description">
       <h2>Migration Arrivals by State</h2>
-      <p>This visualisation explores how overseas migration contributes to population change across Australia at the state level for a selected year. The map reveals strong east-coast dominance, particularly in New South Wales, Victoria, and Queensland- where most international arrivals settle due to major job markets, education hubs, and established migrant communities.
-         The filter can be used to change the data to a different year's data and can help compare the response of migration before and after COVID-19. </p>
+      <p>This visualisation explores how overseas migration contributes to population change across Australia at the state level for a selected year. The map reveals strong east-coast dominance, particularly in New South Wales, Victoria, and Queensland—where most international arrivals settle due to major job markets, education hubs, and established migrant communities.
+        The filter can be used to change the data to a different year's data and can help compare the response of migration before and after COVID-19.
+      </p>
       <p class="note-warning">⚠ No data available between 2020–22 due to COVID border restrictions.</p>
     </div>
   </section>
 
-   <!-- Stacked Bar Chart -->
+  <!-- Stacked Bar Chart -->
   <section>
     <div class="vis-container" id="barVis"></div>
     <div class="description">
@@ -167,7 +148,7 @@
     <div class="description">
       <h2>Visa Category Trends Over Time</h2>
       <p>This stacked area chart shows how different visa categories contributed to migration flows over the years, including the major decline in temporary visas following COVID-19 restrictions.
-        With this chart we can clearly see that there was an immense decrease in migrant arrivals in 2020-21, due to COVID-19 an border closures. 
+        With this chart we can clearly see that there was an immense decrease in migrant arrivals in 2020-21, due to COVID-19 and border closures. 
       </p>
     </div>
   </section>
@@ -184,23 +165,23 @@
 
   <footer>
     <p><strong>Author:</strong> Sanika Yelane </p>
-    <p><strong>Data Sources:</strong> <ul><li>Australian Bureau of Statistics</li>
+    <p><strong>Data Sources:</strong>
+      <ul>
+        <li>Australian Bureau of Statistics</li>
         <li>Custom GitHub datasets</li>
-    <li>Department of Home Affairs: 2023-24 Migration Program Report</li>
-    <li>Data.gov.au: Historical migration statistics</li>
-    </ul>
+        <li>Department of Home Affairs: 2023-24 Migration Program Report</li>
+        <li>Data.gov.au: Historical migration statistics</li>
+      </ul>
     </p>
     <p><strong>Tools used:</strong> mapShaper, Vegalite, VS Code, HTML </p>
-    
   </footer>
-
 
   <!-- EMBED CHARTS -->
   <script type="text/javascript">
-  vegaEmbed('#mapVis', "js/map.json", {actions:false}).catch(console.error);
-  vegaEmbed('#barVis', "js/barchart.json", {actions:false}).catch(console.error);
-  vegaEmbed('#areaVis', "js/stacked_areachart.json", {actions:false}).catch(console.error);
-  vegaEmbed('#lineVis', "js/graph1.json", {actions:false}).catch(console.error);
-</script>
+    vegaEmbed('#mapVis', "js/map.json", {actions:false}).catch(console.error);
+    vegaEmbed('#barVis', "js/barchart.json", {actions:false}).catch(console.error);
+    vegaEmbed('#areaVis', "js/stacked_areachart.json", {actions:false}).catch(console.error);
+    vegaEmbed('#lineVis', "js/graph1.json", {actions:false}).catch(console.error);
+  </script>
 </body>
 </html>
