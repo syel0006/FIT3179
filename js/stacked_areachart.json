@@ -5,7 +5,7 @@
   "height": 350,
 
   "data": {
-    "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/MigrantArrivals_byVisaType.csv",
+    "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/datasets/MigrantArrivals_byVisaType.csv",
     "format": {"type": "csv"}
   },
 
@@ -22,9 +22,7 @@
       "labelFontSize": 10,
       "title": "Financial year",
       "labelOverlap": false
-    }
-},
-
+    }},
     "y": {
       "aggregate": "sum",
       "field": "CountK",

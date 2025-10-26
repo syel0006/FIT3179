@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+  "text": "Migration Outcomes by Visa Stream Over Time",
+  "fontSize": 20,
+  "fontWeight": "bold",
+  "anchor": "middle"
+},
+  "width": 900,
+  "height": 420,
+  "autosize": {"type": "fit", "contains": "padding"},
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/syel0006/FIT3179/refs/heads/datasets/datasets/migration%20outcome%20by%20stream.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    {
+      "fold": [
+        "Family stream1",
+        "Child visa2",
+        "Skill stream",
+        "Special Eligibility",
+        "Total"
+      ],
+      "as": ["Stream", "CountRaw"]
+    },
+
+    
+    {"calculate": "replace(datum.CountRaw, ',', '')", "as": "CountNoComma"},
+    {"calculate": "toNumber(datum.CountNoComma)", "as": "Count"},
+
+    
+    {"calculate": "toNumber(substring(datum.Year, 0, 4))", "as": "YearStart"},
+
+  
+    {
+      "filter": "(datum.Stream == 'Skill stream' && pSkill) || (datum.Stream == 'Family stream1' && pFamily) || (datum.Stream == 'Child visa2' && pChild) || (datum.Stream == 'Special Eligibility' && pSpec) || (datum.Stream == 'Total' && pTotal)"
+    }
+  ],
+
+  "params": [
+    {"name": "pSkill",  "value": true, "bind": {"input": "checkbox", "name": " Skill stream "}},
+    {"name": "pFamily", "value": true, "bind": {"input": "checkbox", "name": " Family stream "}},
+    {"name": "pChild",  "value": true, "bind": {"input": "checkbox", "name": " Child visa "}},
+    {"name": "pSpec",   "value": true, "bind": {"input": "checkbox", "name": " Special Eligibility "}},
+    {"name": "pTotal",  "value": true, "bind": {"input": "checkbox", "name": " Total "}},
+    
+    
+    {"name": "hl", "select": {"type": "point", "fields": ["Stream"], "on": "mouseover", "clear": "mouseout"}}
+  ],
+
+  "mark": {"type": "line", "interpolate": "monotone", "point": {"filled": true, "size": 40}},
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "sort": {"field": "YearStart", "order": "ascending"},
+      "title": "Financial year",
+      "axis": {"labelAngle": -45, "labelFontSize": 11, "labelOverlap": false}
+    },
+
+    "y": {
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Number of migrants",
+      "axis": {"format": "~s", "grid": true},
+      "scale": {"nice": true, "zero": true}
+    },
+
+    "color": {
+  "field": "Stream",
+  "type": "nominal",
+  "title": "Stream",
+  "scale": {"scheme": "set2"}
+},
+
+    
+    "strokeWidth": {
+      "condition": {"param": "hl", "value": 3},
+      "value": 1.8
+    },
+    "opacity": {
+      "condition": {"param": "hl", "value": 1},
+      "value": 0.85
+    },
+
+    "tooltip": [
+      {"field": "Year", "title": "Financial year"},
+      {"field": "Stream", "title": "Stream"},
+      {"field": "Count", "title": "Count", "format": ","}
+    ]
+  },
+
+  "config": {
+    "legend": {"orient": "right", "title": "Stream"},
+    "axis": {"titleFontSize": 13, "labelFontSize": 11}
+  }
+}
